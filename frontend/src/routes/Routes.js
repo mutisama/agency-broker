@@ -1,11 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from '../components/ProtectedRoute';
+import { SignIn } from '../pages/Authentication/SignIn';
 
-export const AppRoutes = () => {
+export const Routes = () => {
   return (
     <Switch>
-      <Redirect exact from='/' to='/' />
+      <Redirect exact from='/' to='/signin' />
+      <Route path='/signin' component={SignIn} />
     </Switch>
   );
 };
