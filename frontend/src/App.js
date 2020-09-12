@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { colors } from './styles/colors';
+import { Routes } from './routes/Routes';
 
 const theme = createMuiTheme({
   palette: {
@@ -18,6 +19,7 @@ function App() {
   return (
     <Router>
       <MuiThemeProvider theme={theme}></MuiThemeProvider>
+      <Routes />
     </Router>
   );
 }
