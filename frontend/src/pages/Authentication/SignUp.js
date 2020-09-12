@@ -12,16 +12,18 @@ import { Link } from 'react-router-dom';
 import { colors } from '../../styles/colors';
 import authCover from '../../assets/coalition-logo.png';
 
-export const SignIn = () => {
+export const SignUp = () => {
   const classes = useStyles();
 
   const [user, setUser] = useState({
+    name: '',
+    surname: '',
     email: '',
     password: '',
   });
 
-  const signIn = async () => {
-    console.log('signIn');
+  const signUp = async () => {
+    console.log('signUp');
   };
   return (
     <Grid container component='main' className={classes.root}>
@@ -36,55 +38,86 @@ export const SignIn = () => {
             component='h1'
             variant='h5'
             style={{ fontSize: '2rem', marginBottom: '2rem' }}>
-            Sign In
+            Sign Up
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
-              value={user.email}
-              inputProps={{ style: { fontSize: '2rem' } }}
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              size='medium'
-            />
-            <TextField
-              value={user.password}
-              inputProps={{ style: { fontSize: '2rem' } }}
-              onChange={(e) => setUser({ ...user, password: e.target.value })}
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              autoComplete='current-password'
-            />
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={user.name}
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
+                  autoComplete='fname'
+                  name='firstName'
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='firstName'
+                  label='First Name'
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={user.surname}
+                  onChange={(e) =>
+                    setUser({ ...user, surname: e.target.value })
+                  }
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='lastName'
+                  label='Last Name'
+                  name='lastName'
+                  autoComplete='lname'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='email'
+                  label='Email Address'
+                  name='email'
+                  autoComplete='email'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  value={user.password}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
+                  variant='outlined'
+                  required
+                  fullWidth
+                  name='password'
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
+                />
+              </Grid>
+            </Grid>
 
             <Button
-              onClick={signIn}
+              onClick={signUp}
               fullWidth
               variant='contained'
               color='primary'
               className={classes.submit}>
-              Sign In
+              Sign up
             </Button>
             <Grid container>
               <Grid item>
                 <Link
-                  to='/signup'
+                  to='/signin'
                   style={{ color: colors.primary }}
                   variant='body2'
                   style={{ fontSize: '1rem' }}>
-                  {"Don't have an account? Sign Up"}
+                  Sign in
                 </Link>
               </Grid>
             </Grid>
