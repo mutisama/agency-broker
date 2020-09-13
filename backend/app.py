@@ -12,8 +12,11 @@ db = SQLAlchemy(app)
 
 with app.app_context():
     from .auth import auth as auth_blueprint
+    from .list import list as list_blueprint
     from .models import Broker, Agency, AgencyDomainWhitelist
     app.register_blueprint(auth_blueprint)
+    app.register_blueprint(list_blueprint)
+
     db.create_all(app=app)
     db.session.commit()
 

@@ -16,6 +16,11 @@ def get_location(address):
     return location.longitude, location.latitude
 
 
+def get_address(location):
+    location = geolocator.reverse(location)
+    return location.address
+
+
 def get_distance(lon1, lat1, lon2, lat2):
     x = (lon2 - lon1) * cos(0.5*(lat2+lat1))
     y = (lat2 - lat1)
@@ -24,12 +29,12 @@ def get_distance(lon1, lat1, lon2, lat2):
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
-    firstName = request.json.get('firstName')
-    lastName = request.json.get('lastName')
+    firstName = request.json.get('firstname')
+    lastName = request.json.get('lastname')
     email = request.json.get('email')
-    address = request.json.get('address')
+    brokerLocation = request.json.get('location')
     domain = email.split('@')[1]
-    brokerLocation = get_location(address)
+    address = get_address(brokerLocation)
 
     # if this returns a user, then the email already exists in database
     user = Broker.query.filter_by(email=email).first()
