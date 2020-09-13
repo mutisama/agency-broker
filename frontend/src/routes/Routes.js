@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { SignIn } from '../pages/Authentication/SignIn';
 import { SignUp } from '../pages/Authentication/SignUp';
+import BrokerList from '../pages/BrokerList';
 
 export const Routes = () => {
   return (
     <Switch>
-      <Redirect exact from='/' to='/signin' />
-      <Route path='/signin' component={SignIn} />
+      <Redirect exact from='/' to='/signup' />
       <Route path='/signup' component={SignUp} />
+      <Route path='/brokerlist' component={BrokerList} />
     </Switch>
   );
 };

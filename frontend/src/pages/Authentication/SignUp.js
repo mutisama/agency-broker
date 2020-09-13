@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { colors } from '../../styles/colors';
 import authCover from '../../assets/coalition-logo.png';
+import axios from 'axios';
+
+import AppMap from '../../components/AppMap';
 
 export const SignUp = () => {
   const classes = useStyles();
@@ -19,11 +22,20 @@ export const SignUp = () => {
     name: '',
     surname: '',
     email: '',
-    password: '',
   });
 
+  const [location, setLocation] = useState([40, 40]);
+  const [loading, setLoading] = useState(false);
+
   const signUp = async () => {
-    console.log('signUp');
+    let body = {};
+    body.firstname = user.name;
+    body.lastname = user.surname;
+    body.email = user.email;
+    body.location = location;
+
+    let result = await axios.post('/signup', body);
+    console.log(result);
   };
   return (
     <Grid container component='main' className={classes.root}>
@@ -84,24 +96,10 @@ export const SignUp = () => {
                   autoComplete='email'
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  value={user.password}
-                  onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
-                  }
-                  variant='outlined'
-                  required
-                  fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='current-password'
-                />
-              </Grid>
             </Grid>
-
+            <div style={{ height: '40vh', width: '100%', marginTop: '5vh' }}>
+              <AppMap setLocation={setLocation} />
+            </div>
             <Button
               onClick={signUp}
               fullWidth
@@ -110,17 +108,6 @@ export const SignUp = () => {
               className={classes.submit}>
               Sign up
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link
-                  to='/signin'
-                  style={{ color: colors.primary }}
-                  variant='body2'
-                  style={{ fontSize: '1rem' }}>
-                  Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Grid>
