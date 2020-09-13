@@ -1,6 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Routes
+
+In the project you can navigate to 2 screens:
+
+### `/signup`
+
+For signing user up
+
+### `/brokerlist`
+
+For viewing broker data
+
 ## Available Scripts
+
+You should run `npm install` before running project
 
 In the project directory, you can run:
 
