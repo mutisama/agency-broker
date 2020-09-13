@@ -6,7 +6,7 @@ There are two parts of this project which are frontend and backend
 
 There are two routes on front end which are `/signup` and `/brokerlist`
 
-To be able to run front-end in debug mode, you should `npm install` and `npm start` respectively.
+To be able to run front-end in debug mode, you should run `npm install` and `npm start` respectively.
 
 ### Backend
 
